@@ -1,26 +1,83 @@
+# ESP32 Temperature and Humidity Monitor
 
-This directory is intended for PlatformIO Test Runner and project tests.
+This project uses an **ESP32-WROOM-32E**, an **I2C LCD 1602**, and a **DHT11 sensor** to create a simple environmental monitor. The system reads live **temperature** and **humidity** data from the DHT11 and displays the values on the LCD.
 
-Unit Testing is a software testing method by which individual units of
-source code, sets of one or more MCU program modules together with associated
-control data, usage procedures, and operating procedures, are tested to
-determine whether they are fit for use. Unit testing finds problems early
-in the development cycle.
+---
 
-More information about PlatformIO Unit Testing:
-- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+## Overview
 
-This is a simple project that uses the ESP32-WROOM-32E board with I2C LCD 1602 
-and DHT11 to create a simple monitor that display live data of the temperature 
-and humidity of the environment on the LCD through the data received by the 
-DHT11.
+The ESP32 collects temperature and humidity data from the DHT11 sensor, then sends the data to the I2C LCD 1602 for real-time display. This is a beginner-friendly project for learning:
 
-The circuit is built by attaching the 3.3V of ESP32 board to the Vcc of the DHT11,
-GPIO4 to Data pin. 5.0V is attached to the Vcc of the LCD, the SCL and SDA are attached
-as well to the corresponding pinout of the ESP32 board. GND of both the DHT11 and LCD 
-should be attached to the same GND node on the ESP32. 
+- ESP32 GPIO connections
+- Sensor data reading
+- I2C communication
+- LCD output display
 
-Necessary Libraries:
-  DHT sensor library
-  Adafruit Unified Sensor
-  LiquidCrystal_I2C
+---
+
+## Components Used
+
+- ESP32-WROOM-32E
+- DHT11 temperature and humidity sensor
+- I2C LCD 1602 display
+- Breadboard
+- Jumper wires
+- USB cable for ESP32 power/programming
+
+---
+
+## Circuit Connections
+
+### DHT11 Connections
+- **VCC** → **3.3V** on ESP32  
+- **DATA** → **GPIO4** on ESP32  
+- **GND** → **GND** on ESP32  
+
+### I2C LCD 1602 Connections
+- **VCC** → **5V** on ESP32  
+- **SDA** → **ESP32 SDA pin**  
+- **SCL** → **ESP32 SCL pin**  
+- **GND** → **GND** on ESP32  
+
+> Make sure both the **DHT11** and the **LCD** share the same **GND** connection on the ESP32.
+
+---
+
+## How It Works
+
+1. The **DHT11** measures the surrounding temperature and humidity.
+2. The **ESP32** reads the sensor values through **GPIO4**.
+3. The **LCD 1602** receives the processed data through **I2C communication**.
+4. The current temperature and humidity are displayed live on the screen.
+
+---
+
+## Required Libraries
+
+Install the following libraries before uploading the code:
+
+- **DHT sensor library**
+- **Adafruit Unified Sensor**
+- **LiquidCrystal_I2C**
+
+---
+
+## Notes
+
+- The DHT11 works with **3.3V**, which is compatible with the ESP32.
+- The LCD is powered using **5V**.
+- Double-check your ESP32 board’s default **SDA** and **SCL** pins, since they may vary depending on the board configuration.
+
+---
+
+## Example Use Cases
+
+- Room temperature monitor
+- Humidity tracker
+- Beginner ESP32 + sensor + LCD practice project
+
+---
+
+## Author
+
+Created as a simple ESP32 project for live temperature and humidity monitoring.
